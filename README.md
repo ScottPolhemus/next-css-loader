@@ -2,9 +2,14 @@
 
 Enables the use of css modules in a next.js app, similar to the usage of `style-loader?singleton`.
 
-This package has two exports: a webpack loader (intended to be used with `postcss-loader` and `postcss-modules`), and a stylesheet component which adds an inline style tag to Next's `<Head>`.
+This package has two exports: the `next-css-loader` webpack loader (intended to be used with `postcss-loader` and `postcss-modules`), and a `<Stylesheet />` component which will add an inline style tag to Next's `<Head>`.
 
-In next.config.js:
+In an existing next.js app, add the loader (and postcss dependencies):
+```
+npm install --save-dev next-css-loader postcss-loader postcss-modules
+```
+
+In next.config.js, add the loader rules:
 ```
 module.exports = {
   webpack: (config) => {
@@ -29,7 +34,7 @@ module.exports = {
 };
 ```
 
-In postcss.config.js:
+In postcss.config.js, add configuration for postcss and postcss-modules:
 ```
 module.exports = {
   plugins: [
@@ -39,7 +44,7 @@ module.exports = {
 
 ```
 
-In your app component or page layout, add the style tag (only needs to be rendered once per page):
+In your app container or page layout component, add the stylesheet component (only needs to be rendered once):
 
 ```
 impot React from 'react';
